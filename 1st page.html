@@ -1,0 +1,307 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>The Astral Annex</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #f4f4f9;  
+            color: #333;  
+        }  
+        header {  
+            background-color: #6200ea;  
+            color: white;  
+            padding: 20px;  
+            text-align: center;  
+        }  
+        .container {  
+            margin: 20px auto;  
+            max-width: 1200px;  
+            padding: 20px;  
+            background: white;  
+            border-radius: 8px;  
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+        }
+ 	   /* New square style */
+   	  .book-square {
+   	    width: 200px;
+    	  height: 55px;
+    	  border: 2px solid #6200ea;
+    	  display: flex;
+    	  align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+    	  font-size: 18px;
+            font-weight: bold;
+            color: #6200ea;
+            text-align: center;
+    	 }
+        .search-bar {  
+            text-align: center;  
+            margin-bottom: 20px;  
+        }  
+        .search-bar input {  
+            width: 60%;  
+            padding: 10px;  
+            font-size: 16px;  
+            border: 1px solid #ccc;  
+            border-radius: 4px;  
+        }  
+        .search-bar button {  
+            padding: 10px 15px;  
+            font-size: 16px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            cursor: pointer;  
+            border-radius: 4px;  
+        }  
+        .search-bar button:hover {  
+            background-color: #4a00c2;  
+        }  
+        .book {  
+            border-bottom: 1px solid #ddd;  
+            padding: 10px 0;  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+        }  
+        .book:last-child {  
+            border-bottom: none;  
+        }  
+        .book img {  
+            max-width: 100px;  
+            margin-right: 20px;  
+            border-radius: 4px;  
+        }  
+        .book-info {  
+            flex-grow: 1;  
+        }  
+        .book h3 {  
+            margin: 0 0 5px;  
+        }  
+        .book p {  
+            margin: 5px 0;  
+        }  
+        .pdf-button {  
+            padding: 10px 15px;  
+            font-size: 14px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            border-radius: 4px;  
+            cursor: pointer;  
+            text-decoration: none;  
+            transition: background 0.3s ease;  
+        }  
+        .pdf-button:hover {  
+            background-color: #4a00c2;  
+        }  
+	.next-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Added gap between button and footer */
+}
+.next-page-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #6200ea;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.next-page-button:hover {
+    background-color: #4a00c2;
+    transform: scale(1.05);
+}
+
+        footer {  
+            text-align: center;  
+            background-color: #333;  
+            color: white;  
+            padding: 10px 0;  
+            position: relative;  
+            bottom: 0;  
+            width: 100%;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<header>  
+    <h1>Welcome to our Abode</h1>  
+</header>  
+
+<div class="container">  
+  <!-- New Square showing number of available books -->
+  <div class="book-square" id="bookCount">No. of books available: 0</div>
+    <div class="search-bar">  
+        <input type="text" id="searchInput" placeholder="Search for a book..." onkeypress="handleKeyPress(event)">  
+        <button onclick="searchBook()">Search</button>  
+    </div>  
+
+    <h2>Available Books</h2>
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/81TLiZrasVL._UF1000,1000_QL80_.jpg" alt="The Great Gatsby">  
+        <div class="book-info">  
+            <h3>Name: The Great Gatsby</h3>  
+            <p>Author: F. Scott Fitzgerald</p>  
+            <p>Description: A novel about the American dream, wealth, and love in the 1920s.</p>  
+        </div>  
+        <a href="https://www.planetebook.com/free-ebooks/the-great-gatsby.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/81gepf1eMqL._AC_UF1000,1000_QL80_.jpg" alt="To Kill a Mockingbird">  
+        <div class="book-info">  
+            <h3>Name: To Kill a Mockingbird</h3>  
+            <p>Author: Harper Lee</p>  
+            <p>Description: A story of racial injustice and moral growth in the Deep South.</p>  
+        </div>  
+        <a href="https://habibullahe12.wordpress.com/wp-content/uploads/2017/03/to-kill-a-mockingbird-harperlee.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/612ADI+BVlL._AC_UF1000,1000_QL80_.jpg" alt="1984">  
+        <div class="book-info">  
+            <h3>Name: 1984</h3>  
+            <p>Author: George Orwell</p>  
+            <p>Description: A dystopian novel about totalitarian regimes and surveillance.</p>  
+        </div>  
+        <a href="https://rauterberg.employee.id.tue.nl/lecturenotes/DDM110%20CAS/Orwell-1949%201984.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>   
+
+
+	<div class="book">  
+        <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/book/f/s/1/pride-prejudice-original-imagy32ephewfga2.jpeg?q=90&crop=false" alt="Pride and Prejudice">  
+        <div class="book-info">  
+            <h3>Name: Pride and Prejudice</h3>  
+            <p>Author: Jane Austen</p>  
+            <p>Description: A romantic novel that also critiques societal expectations.</p>  
+        </div>
+	        <a href="https://giove.isti.cnr.it/demo/eread/Libri/joy/Pride.pdf" class="pdf-button" target="_blank">View PDF ></a>    
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/71K4OH9CqOL._UF1000,1000_QL80_.jpg" alt="Moby-Dick">  
+        <div class="book-info">    
+            <h3>Name: Moby-Dick</h3>  
+            <p>Author: Herman Melville</p>  
+            <p>Description: A tale of obsession and revenge on the high seas.</p>  
+        </div>  
+	        <a href="https://uberty.org/wp-content/uploads/2015/12/herman-melville-moby-dick.pdf" class="pdf-button" target="_blank">View PDF ></a>    
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/8125BDk3l9L.jpg" alt="The Catcher in the Rye">  
+        <div class="book-info">    
+            <h3>Name: The Catcher in the Rye</h3>  
+            <p>Author: J.D. Salinger</p>  
+            <p>Description: A young man's experiences in New York after being expelled from prep school.</p>  
+        </div>  
+        <a href="https://giove.isti.cnr.it/demo/eread/Libri/sad/Rye.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/71fm0Ap7JcL._AC_UF1000,1000_QL80_.jpg" alt="The Picture of Dorian Gray">  
+        <div class="book-info">    
+            <h3>Name: The Picture of Dorian Gray</h3>  
+            <p>Author: Oscar Wilde</p>  
+            <p>Description: A story exploring vanity and moral corruption.</p>  
+        </div>  
+        <a href="https://dn790008.ca.archive.org/0/items/pictureofdoriang00wildiala/pictureofdoriang00wildiala.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/91D4YvdC0dL.jpg" alt="Brave New World">  
+        <div class="book-info">    
+            <h3>Name: Brave New World</h3>  
+            <p>Author: Aldous Huxley</p>  
+            <p>Description: A novel set in a futuristic society driven by technology and conformity.</p>  
+        </div>  
+        <a href="https://dn790000.ca.archive.org/0/items/BraveNewWorld-and-BraveNewWorldRevisited/Brave-New-World_-_Aldous-Huxley.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://rukminim2.flixcart.com/image/850/1000/kz4gh3k0/book/c/k/z/fahrenheit-451-original-imagb7n2mxy9mdsy.jpeg?q=20&crop=false" alt="Fahrenheit 451">  
+        <div class="book-info">    
+            <h3>Name: Fahrenheit 451</h3>  
+            <p>Author: Ray Bradbury</p>  
+            <p>Description: A dystopian tale about a future where books are banned.</p>  
+        </div>  
+        <a href="https://lexiconic.net/english/F451.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+ 
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/81FPzmB5fgL._AC_UF1000,1000_QL80_.jpg" alt="The Alchemist">  
+        <div class="book-info">    
+            <h3>Name: The Alchemist</h3>  
+            <p>Author: Paulo Coelho</p>  
+            <p>Description: A philosophical story about following your dreams.</p>  
+        </div>  
+        <a href="https://ia601006.us.archive.org/13/items/OceanofPDF.comTheAlchemist/_OceanofPDF.com_The_Alchemist.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+<div class="next-page-container">
+    <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/2nd%20Page.html" class="next-page-button">Next Page</a>
+</div>
+
+<footer>  
+    <p>&copy; 2025 Library Website | All Rights Reserved</p>  
+</footer>  
+<script>
+ function updateBookCount() {
+    const books = document.querySelectorAll('.book');
+    document.getElementById('bookCount').textContent = `No. of books available: ${books.length}`;
+  }
+  
+  // Call function on page load
+  window.onload = updateBookCount;
+  
+  function searchBook() {
+    let input = document.getElementById('searchInput').value.toLowerCase().trim();
+    let books = document.getElementsByClassName('book');
+    
+    if (input === "") {
+      location.reload();
+      return;
+    }
+    
+    for (let i = 0; i < books.length; i++) {
+      let bookTitle = books[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+      if (bookTitle.includes(input)) {
+        books[i].style.display = "flex";
+      } else {
+        books[i].style.display = "none";
+      }
+    }
+  }
+  
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      searchBook();
+    }
+  }
+</script>
+</body>  
+</html>

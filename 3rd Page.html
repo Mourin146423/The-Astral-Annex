@@ -1,0 +1,336 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>The Astral Annex</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #f4f4f9;  
+            color: #333;  
+        }  
+        header {  
+            background-color: #6200ea;  
+            color: white;  
+            padding: 20px;  
+            text-align: center;  
+        }  
+        .container {  
+            margin: 20px auto;  
+            max-width: 1200px;  
+            padding: 20px;  
+            background: white;  
+            border-radius: 8px;  
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+        }
+ 	   /* New square style */
+   	  .book-square {
+   	    width: 200px;
+    	  height: 55px;
+    	  border: 2px solid #6200ea;
+    	  display: flex;
+    	  align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+    	  font-size: 18px;
+            font-weight: bold;
+            color: #6200ea;
+            text-align: center;
+    	 }
+        .search-bar {  
+            text-align: center;  
+            margin-bottom: 20px;  
+        }  
+        .search-bar input {  
+            width: 60%;  
+            padding: 10px;  
+            font-size: 16px;  
+            border: 1px solid #ccc;  
+            border-radius: 4px;  
+        }  
+        .search-bar button {  
+            padding: 10px 15px;  
+            font-size: 16px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            cursor: pointer;  
+            border-radius: 4px;  
+        }  
+        .search-bar button:hover {  
+            background-color: #4a00c2;  
+        }  
+        .book {  
+            border-bottom: 1px solid #ddd;  
+            padding: 10px 0;  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+        }  
+        .book:last-child {  
+            border-bottom: none;  
+        }  
+        .book img {  
+            max-width: 100px;  
+            margin-right: 20px;  
+            border-radius: 4px;  
+        }  
+        .book-info {  
+            flex-grow: 1;  
+        }  
+        .book h3 {  
+            margin: 0 0 5px;  
+        }  
+        .book p {  
+            margin: 5px 0;  
+        }  
+        .pdf-button {  
+            padding: 10px 15px;  
+            font-size: 14px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            border-radius: 4px;  
+            cursor: pointer;  
+            text-decoration: none;  
+            transition: background 0.3s ease;  
+        }  
+        .pdf-button:hover {  
+            background-color: #4a00c2;  
+        }  
+	.next-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Added gap between button and footer */
+}
+.next-page-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #6200ea;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.next-page-button:hover {
+    background-color: #4a00c2;
+    transform: scale(1.05);
+}
+.previous-page-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff5722; /* Different color for the previous button */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.previous-page-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Gap between buttons and footer */
+    gap: 20px; /* Space between buttons */
+}
+
+        footer {  
+            text-align: center;  
+            background-color: #333;  
+            color: white;  
+            padding: 10px 0;  
+            position: relative;  
+            bottom: 0;  
+            width: 100%;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<header>  
+    <h1>Welcome to our Abode</h1>  
+</header>  
+
+<div class="container">  
+  <!-- New Square showing number of available books -->
+  <div class="book-square" id="bookCount">No. of books available: 0</div>
+    <div class="search-bar">  
+        <input type="text" id="searchInput" placeholder="Search for a book..." onkeypress="handleKeyPress(event)">  
+        <button onclick="searchBook()">Search</button>  
+    </div>  
+
+    <h2>Available Books</h2>  
+ <div class="book">  
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1627043894i/58613345.jpg" alt="Harry Potter, Book 6; the Prisoner of Azkaban">  
+        <div class="book-info">    
+            <h3>Name: Harry Potter, Book 6; the Prisoner of Azkaban</h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: Harry's sixth year at Hogwarts, when he prepares for the final battle against Voldemort.</p>  
+        </div>  
+        <a href="https://hp.subhamram.in/J.K.%20Rowling%20-%20HP%206%20-%20Harry%20Potter%20and%20the%20Half%20Blood%20Prince.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-IYrjCA_HWMZ06bTyWepocYQ-ZqiUixywUw&s" alt="Harry Potter and the Deathly Hallows">  
+        <div class="book-info">    
+            <h3>Name: Harry Potter, Book 7; the Deathly Hallows</h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: Final battle against Voldemort's reign.</p>  
+        </div>  
+        <a href="https://vidyaprabodhinicollege.edu.in/VPCCECM/ebooks/ENGLISH%20LITERATURE/Harry%20potter/(Book%207)%20Harry%20Potter%20And%20The%20Deathly%20Hallows.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>     
+ 
+
+    <div class="book">  
+        <img src="https://online.fliphtml5.com/wiusp/qikb/files/large/ad7270d53f73d3732e8ad84be0a061b7.webp?1720847190&1720847190" alt="Where is Molly">  
+        <div class="book-info">    
+            <h3>Name: Icebreaker</h3>  
+            <p>Author: Hannah Grace</p>  
+            <p>Description: College athletes navigate love and competition.</p>  
+        </div>  
+        <a href="https://pdfdrive.com.co/wp-content/pdfh/Icebreaker.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+ 
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/61RfxGnuibL.jpg" alt="Spanish Love Deception">  
+        <div class="book-info">    
+            <h3>Name: Spanish Love Deception</h3>  
+            <p>Author: Elena Armas</p>  
+            <p>Description: A romantic comedy about fake dating.</p>  
+        </div>  
+        <a href="file:///C:/Users/MOURIN%20POLLEY/AppData/Local/Microsoft/Windows/INetCache/IE/YWB63CNF/The%20Spanish%20Love%20Deception%20(Elena%20Armas)%20(z-libor_220525_103207[1].pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/61LkGj5Hs5L.jpg" alt="King of Wrath">  
+        <div class="book-info">    
+            <h3>Name: King of Wrath</h3>  
+            <p>Author: Ana Huang</p>  
+            <p>Description: A seductive romance novel.</p>  
+        </div>  
+        <a href="https://files.addictbooks.com/wp-content/uploads/2023/10/King-of-Wrath.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>   
+ 
+
+    <div class="book">  
+        <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/regionalbooks/c/2/v/king-of-pride-kings-of-sin-original-imagparvvtuzhdbm.jpeg?q=90&crop=false" alt="King of Pride">  
+        <div class="book-info">    
+            <h3>Name: King of Pride</h3>  
+            <p>Author: Ana Huang</p>  
+            <p>Description: A seductive romance novel.</p>  
+        </div>  
+        <a href="file:///C:/Users/MOURIN%20POLLEY/Downloads/King%20of%20Pride%20(Kings%20of%20Sin,%20Book%202)%20-%20PDF%20Room.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>   
+
+
+    <div class="book">  
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_RNButbReDI0gY3qfYDXNuXlvVzVed6LcTg&s" alt="King of Sloth">  
+        <div class="book-info">    
+            <h3>Name: King of Sloth</h3>  
+            <p>Author: Ana Huang</p>  
+            <p>Description: A seductive romance novel.</p>  
+        </div>  
+        <a href="file:///C:/Users/MOURIN%20POLLEY/Downloads/King%20of%20Sloth%20(Kings%20of%20Sin,%20Book%204)%20-%20PDF%20Room.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/81sdugJIrOL._AC_UF1000,1000_QL80_.jpg" alt="King of Greed">  
+        <div class="book-info">    
+            <h3>Name: King of Greed</h3>  
+            <p>Author: Ana Huang</p>  
+            <p>Description: A seductive romance novel.</p>  
+        </div>  
+        <a href="file:///C:/Users/MOURIN%20POLLEY/Downloads/King%20of%20Greed%20(Kings%20of%20Sin,%20Book%203)%20-%20PDF%20Room.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/91jj+OWbC1L._AC_UF1000,1000_QL80_.jpg" alt="I Am Malala">  
+        <div class="book-info">    
+            <h3>Name: I Am Malala</h3>  
+            <p>Author: Malala Yousafzai</p>  
+            <p>Description: The inspiring memoir of a young activist.</p>  
+        </div>  
+        <a href="https://lgnavigators.weebly.com/uploads/5/8/5/2/58521739/i_am_malala_%E2%80%93_how_one_girl_stood_up_for_education_and_changed_the_world__young_readers_edition_.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/book/w/i/0/the-girl-who-drank-the-moon-original-imah5nytcxgqubjh.jpeg?q=20&crop=false" alt="The Girl Who Drank The Moon">  
+        <div class="book-info">    
+            <h3>Name: The Girl Who Drank The Moon</h3>  
+            <p>Author: Kelly Barnhill</p>  
+            <p>Description: A fantasy novel about a young girl who discovers her magical powers and learns about her past.</p>  
+        </div>  
+        <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/_OceanofPDF.com_The_Girl_Who_Drank_the_Moon_-_Kelly_Barnhill.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+<div class="next-page-container">   
+ <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/2nd%20Page.html" class="next-page-button" style="margin-right: 20px;">Previous Page</a>
+    <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/4th%20page.html" class="next-page-button">Next Page</a>
+</div>
+
+
+<footer>  
+    <p>&copy; 2025 Library Website | All Rights Reserved</p>  
+</footer>  
+<script>
+ function updateBookCount() {
+    const books = document.querySelectorAll('.book');
+    document.getElementById('bookCount').textContent = `No. of books available: ${books.length}`;
+  }
+  
+  // Call function on page load
+  window.onload = updateBookCount;
+  
+  function searchBook() {
+    let input = document.getElementById('searchInput').value.toLowerCase().trim();
+    let books = document.getElementsByClassName('book');
+    
+    if (input === "") {
+      location.reload();
+      return;
+    }
+    
+    for (let i = 0; i < books.length; i++) {
+      let bookTitle = books[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+      if (bookTitle.includes(input)) {
+        books[i].style.display = "flex";
+      } else {
+        books[i].style.display = "none";
+      }
+    }
+  }
+  
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      searchBook();
+    }
+  }
+</script>
+</body>  
+</html>

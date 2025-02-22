@@ -1,0 +1,336 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>The Astral Annex</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #f4f4f9;  
+            color: #333;  
+        }  
+        header {  
+            background-color: #6200ea;  
+            color: white;  
+            padding: 20px;  
+            text-align: center;  
+        }  
+        .container {  
+            margin: 20px auto;  
+            max-width: 1200px;  
+            padding: 20px;  
+            background: white;  
+            border-radius: 8px;  
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+        }
+ 	   /* New square style */
+   	  .book-square {
+   	    width: 200px;
+    	  height: 55px;
+    	  border: 2px solid #6200ea;
+    	  display: flex;
+    	  align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+    	  font-size: 18px;
+            font-weight: bold;
+            color: #6200ea;
+            text-align: center;
+    	 }
+        .search-bar {  
+            text-align: center;  
+            margin-bottom: 20px;  
+        }  
+        .search-bar input {  
+            width: 60%;  
+            padding: 10px;  
+            font-size: 16px;  
+            border: 1px solid #ccc;  
+            border-radius: 4px;  
+        }  
+        .search-bar button {  
+            padding: 10px 15px;  
+            font-size: 16px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            cursor: pointer;  
+            border-radius: 4px;  
+        }  
+        .search-bar button:hover {  
+            background-color: #4a00c2;  
+        }  
+        .book {  
+            border-bottom: 1px solid #ddd;  
+            padding: 10px 0;  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+        }  
+        .book:last-child {  
+            border-bottom: none;  
+        }  
+        .book img {  
+            max-width: 100px;  
+            margin-right: 20px;  
+            border-radius: 4px;  
+        }  
+        .book-info {  
+            flex-grow: 1;  
+        }  
+        .book h3 {  
+            margin: 0 0 5px;  
+        }  
+        .book p {  
+            margin: 5px 0;  
+        }  
+        .pdf-button {  
+            padding: 10px 15px;  
+            font-size: 14px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            border-radius: 4px;  
+            cursor: pointer;  
+            text-decoration: none;  
+            transition: background 0.3s ease;  
+        }  
+        .pdf-button:hover {  
+            background-color: #4a00c2;  
+        }  
+	.next-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Added gap between button and footer */
+}
+.next-page-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #6200ea;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.next-page-button:hover {
+    background-color: #4a00c2;
+    transform: scale(1.05);
+}
+.previous-page-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff5722; /* Different color for the previous button */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.previous-page-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Gap between buttons and footer */
+    gap: 20px; /* Space between buttons */
+}
+
+        footer {  
+            text-align: center;  
+            background-color: #333;  
+            color: white;  
+            padding: 10px 0;  
+            position: relative;  
+            bottom: 0;  
+            width: 100%;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<header>  
+    <h1>Welcome to our Abode</h1>  
+</header>  
+
+<div class="container">  
+  <!-- New Square showing number of available books -->
+  <div class="book-square" id="bookCount">No. of books available: 0</div>
+    <div class="search-bar">  
+        <input type="text" id="searchInput" placeholder="Search for a book..." onkeypress="handleKeyPress(event)">  
+        <button onclick="searchBook()">Search</button>  
+    </div>  
+
+    <h2>Available Books</h2>
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/81P45LkcMuL._AC_UF1000,1000_QL80_.jpg" alt="The Road">  
+        <div class="book-info">    
+            <h3>Name: The Road</h3>  
+            <p>Author: Cormac McCarthy</p>  
+            <p>Description: A haunting tale of survival in a post-apocalyptic world.</p>  
+        </div>  
+        <a href="https://www.readingsanctuary.com/wp-content/uploads/2023/04/the-road.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/710n0UUdaXL._AC_UF1000,1000_QL80_.jpg" alt="The Handmaid's Tale">  
+        <div class="book-info">    
+            <h3>Name: The Handmaid's Tale</h3>  
+            <p>Author: Margaret Atwood</p>  
+            <p>Description: A dystopian novel exploring themes of power and gender.</p>  
+        </div>  
+        <a href="https://dn790005.ca.archive.org/0/items/the-handmaid-s-tale-graphic-novel-by-margaret-atwood/The-Handmaid_s-Tale-_Graphic-Novel_-by-Margaret-Atwood.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://rukminim2.flixcart.com/image/850/1000/kvcpn680/book/x/a/e/the-martian-original-imag895wszccvrhh.jpeg?q=90&crop=false" alt="The Martian">  
+        <div class="book-info">    
+            <h3>Name: The Martian</h3>  
+            <p>Author: Andy Weir</p>  
+            <p>Description: A gripping survival story of an astronaut stranded on Mars.</p>  
+        </div>  
+        <a href="https://dl2.languagecentre.ir/novels/The-Martian%20[www.languagecentre.ir].pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>
+  
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" alt="Atomic Habits">  
+        <div class="book-info">    
+            <h3>Name: Atomic Habits</h3>  
+            <p>Author: James Clear</p>  
+            <p>Description: A guide to building good habits and breaking bad ones.</p>  
+        </div>  
+        <a href="https://dn790007.ca.archive.org/0/items/atomic-habits-pdfdrive/Atomic%20habits%20%28%20PDFDrive%20%29.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/91YvccjSo8L._UF1000,1000_QL80_.jpg" alt="Haunting Adeline">  
+        <div class="book-info">    
+            <h3>Name: Haunting Adeline</h3>  
+            <p>Author: H.D. Carlton</p>  
+            <p>Description: A dark romance with mystery and suspense.</p>  
+        </div>
+        <a href="https://files.addictbooks.com/wp-content/uploads/2023/05/Haunting-Adeline.pdf" class="pdf-button" target="_blank">View PDF ></a>    
+    </div>  
+
+
+<div class="book">  
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg" alt="Harry Potter, Book 1; The Sorcerer's Stone">  
+        <div class="book-info">    
+            <h3>Name: Harry Potter, Book 1; The Sorcerer's Stone</h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: Harry Potter is an orphan who discovers he is a wizard and is invited to Hogwarts.</p>  
+        </div>  
+        <a href="https://hazidesaratcollege.ac.in/library/uploads/85jkr_harrypotter_1.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://m.media-amazon.com/images/I/918wxhKJaPL._AC_UF350,350_QL50_.jpg" alt="Harry Potter, Book 2; the Chamber of Secrets">  
+        <div class="book-info">    
+            <h3>Name: Harry Potter, Book 2; The Chamber of Secrets</h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: Mysterious attacks, Harry confronts Slytherin's heir.</p>  
+        </div>  
+        <a href="https://www.scholastic.com/hpread/HP_Book2_Chapter_Excerpt.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg" alt="Harry Potter, Book 3; the Prisoner of Azkaban">  
+        <div class="book-info">    
+            <h3>Name: Harry Potter, Book 3; The Prisoner of Azkaban</h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: Escaped Azkaban prisoner hunts Harry.</p>  
+        </div>  
+        <a href="https://ia902903.us.archive.org/12/items/FantasyFictionebookcollection/Harry%20Potter/3%20-%20Harry%20Potter%20and%20the%20Prisoner%20of%20Azkaban.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+    <div class="book">  
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1627044952i/58613424.jpg" alt="Harry Potter, Book 4; The Goblet of Fire">  
+        <div class="book-info">    
+            <h3>Name: Harry Potter, Book 4; The Goblet of Fire</h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: A magical artifact made of wood that has blue-white flames when active.</p>  
+        </div>  
+        <a href="https://vidyaprabodhinicollege.edu.in/VPCCECM/ebooks/ENGLISH%20LITERATURE/Harry%20potter/(Book%204)%20Harry%20Potter%20And%20The%20Goblet%20Of%20Fire_001.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>     
+
+
+ <div class="book">  
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg" alt="Harry Potter, Book 5; The Order of Phoenix ">  
+        <div class="book-info">    
+            <h3>Name:Harry Potter, Book 5; The Order of Phoenix </h3>  
+            <p>Author:  J. K. Rowling</p>  
+            <p>Description: Dark times rise, Ministry denies.</p>  
+        </div>  
+        <a href="https://afgjilibrary.wordpress.com/wp-content/uploads/2020/05/hp5-harry-potter-and-the-order-of-the-phoenix.pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+
+
+<div class="next-page-container">
+    <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/1st%20page.html" class="next-page-button" style="margin-right: 20px;">Previous Page</a>
+    <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/3rd%20Page.html" class="next-page-button">Next Page</a>
+</div>
+
+
+<footer>  
+    <p>&copy; 2025 Library Website | All Rights Reserved</p>  
+</footer>  
+<script>
+ function updateBookCount() {
+    const books = document.querySelectorAll('.book');
+    document.getElementById('bookCount').textContent = `No. of books available: ${books.length}`;
+  }
+  
+  // Call function on page load
+  window.onload = updateBookCount;
+  
+  function searchBook() {
+    let input = document.getElementById('searchInput').value.toLowerCase().trim();
+    let books = document.getElementsByClassName('book');
+    
+    if (input === "") {
+      location.reload();
+      return;
+    }
+    
+    for (let i = 0; i < books.length; i++) {
+      let bookTitle = books[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+      if (bookTitle.includes(input)) {
+        books[i].style.display = "flex";
+      } else {
+        books[i].style.display = "none";
+      }
+    }
+  }
+  
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      searchBook();
+    }
+  }
+</script>
+</body>  
+</html>

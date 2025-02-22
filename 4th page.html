@@ -1,0 +1,303 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>The Astral Annex</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #f4f4f9;  
+            color: #333;  
+        }  
+        header {  
+            background-color: #6200ea;  
+            color: white;  
+            padding: 20px;  
+            text-align: center;  
+        }  
+        .container {  
+            margin: 20px auto;  
+            max-width: 1200px;  
+            padding: 20px;  
+            background: white;  
+            border-radius: 8px;  
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+        }
+ 	   /* New square style */
+   	  .book-square {
+   	    width: 200px;
+    	  height: 55px;
+    	  border: 2px solid #6200ea;
+    	  display: flex;
+    	  align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+    	  font-size: 18px;
+            font-weight: bold;
+            color: #6200ea;
+            text-align: center;
+    	 }
+        .search-bar {  
+            text-align: center;  
+            margin-bottom: 20px;  
+        }  
+        .search-bar input {  
+            width: 60%;  
+            padding: 10px;  
+            font-size: 16px;  
+            border: 1px solid #ccc;  
+            border-radius: 4px;  
+        }  
+        .search-bar button {  
+            padding: 10px 15px;  
+            font-size: 16px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            cursor: pointer;  
+            border-radius: 4px;  
+        }  
+        .search-bar button:hover {  
+            background-color: #4a00c2;  
+        }  
+        .book {  
+            border-bottom: 1px solid #ddd;  
+            padding: 10px 0;  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+        }  
+        .book:last-child {  
+            border-bottom: none;  
+        }  
+        .book img {  
+            max-width: 100px;  
+            margin-right: 20px;  
+            border-radius: 4px;  
+        }  
+        .book-info {  
+            flex-grow: 1;  
+        }  
+        .book h3 {  
+            margin: 0 0 5px;  
+        }  
+        .book p {  
+            margin: 5px 0;  
+        }  
+        .pdf-button {  
+            padding: 10px 15px;  
+            font-size: 14px;  
+            background-color: #6200ea;  
+            color: white;  
+            border: none;  
+            border-radius: 4px;  
+            cursor: pointer;  
+            text-decoration: none;  
+            transition: background 0.3s ease;  
+        }  
+        .pdf-button:hover {  
+            background-color: #4a00c2;  
+        }  
+	.next-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Added gap between button and footer */
+}
+.next-page-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #6200ea;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.next-page-button:hover {
+    background-color: #4a00c2;
+    transform: scale(1.05);
+}
+
+        footer {  
+            text-align: center;  
+            background-color: #333;  
+            color: white;  
+            padding: 10px 0;  
+            position: relative;  
+            bottom: 0;  
+            width: 100%;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<header>  
+    <h1>Welcome to our Abode</h1>  
+</header>  
+
+<div class="container">  
+  <!-- New Square showing number of available books -->
+  <div class="book-square" id="bookCount">No. of books available: 0</div>
+    <div class="search-bar">  
+        <input type="text" id="searchInput" placeholder="Search for a book..." onkeypress="handleKeyPress(event)">  
+        <button onclick="searchBook()">Search</button>  
+    </div>  
+
+    <h2>Available Books</h2> 
+
+
+    <div class="book">  
+        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1699296058i/197769061.jpg" alt="God of Fury">  
+        <div class="book-info">    
+            <h3>Name: God of Fury</h3>  
+            <p>Author: Rina Kent</p>  
+            <p>Description: A thrilling fantasy epic.</p>  
+        </div>        
+	  <a href="file:///C:/Users/MOURIN%20POLLEY/Downloads/God%20of%20Fury%20A%20Dark%20MM%20College%20Romance%20(Legacy%20of%20Gods%20Book%205)%20(Rina%20Kent)%20(gyannidhi.com).pdf" class="pdf-button" target="_blank">View PDF ></a>  
+    </div>  
+
+   
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+
+    <div class="book">  
+        <img src="" alt="">  
+        <div class="book-info">    
+            <h3>Name: </h3>  
+            <p>Author: </p>  
+            <p>Description: </p>  
+        </div>  
+        <a href="" class="pdf-button" target="_blank">View PDF ></a>  
+    </div> 
+<div class="next-page-container">   
+ <a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/3rd%20Page.html" class="next-page-button" style="margin-right: 20px;">Previous Page</a>
+    <!a href="file:///C:/Users/MOURIN%20POLLEY/OneDrive/Desktop/The%20Astral%20Annex%201/4th%20page.html" class="next-page-button"><!Next Page></!a>
+</div>
+
+
+<footer>  
+    <p>&copy; 2025 Library Website | All Rights Reserved</p>  
+</footer>  
+<script>
+ function updateBookCount() {
+    const books = document.querySelectorAll('.book');
+    document.getElementById('bookCount').textContent = `No. of books available: ${books.length}`;
+  }
+  
+  // Call function on page load
+  window.onload = updateBookCount;
+  
+  function searchBook() {
+    let input = document.getElementById('searchInput').value.toLowerCase().trim();
+    let books = document.getElementsByClassName('book');
+    
+    if (input === "") {
+      location.reload();
+      return;
+    }
+    
+    for (let i = 0; i < books.length; i++) {
+      let bookTitle = books[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+      if (bookTitle.includes(input)) {
+        books[i].style.display = "flex";
+      } else {
+        books[i].style.display = "none";
+      }
+    }
+  }
+  
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      searchBook();
+    }
+  }
+</script>
+</body>  
+</html>
